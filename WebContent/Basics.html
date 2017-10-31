@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JavaScript current day and time </title>
+</head>
+<body>
+
+<p></p>
+<p id="time"> </p>
+<p>Click the button to print the current page.</p>
+<button onclick="print_current_page()">Print this page</button>
+<p id="triangle_area"></p>
+
+
+Enter a year to check if it is leap year: <input id="year" type="text" name="year"><br>
+<button onclick="checkleapyear()">Check Leap Year</button>
+<p id="result"></p>
+
+</body>
+
+
+ <script type="text/javascript">
+//8. Get a random integer from 1 to 10 inclusive
+ var num = Math.ceil(Math.random() * 10);
+ var gnum = prompt('Guess the number between 1 and 10 inclusive');
+ if (gnum == num)
+   alert('Matched');
+  else
+   alert('Not matched, the number was ' + num);
+   
+ //get entension of file
+ filename = "system.php";
+console.log(filename.split('.').pop());
+ 
+ //calculate number of days left until next christmas
+ today=new Date();
+var cmas=new Date(today.getFullYear(), 11, 25);
+if (today.getMonth()==11 && today.getDate()>25) 
+{
+cmas.setFullYear(cmas.getFullYear()+1); 
+}  
+var one_day=1000*60*60*24;
+console.log(Math.ceil((cmas.getTime()-today.getTime())/(one_day))+
+" days left until Christmas!");
+
+ //check if a year is leap year
+ function checkleapyear(){
+var year = document.getElementById("year").value; 
+x = (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+document.getElementById("result").innerHTML="The year "+year+" is "+x;
+
+}
+//find the area of a triangle where length of 3 sides are 5,6.7
+//how to calculate triangle area
+/*
+ * s=(a+b+c)/2
+ * area=Math.sqrt(s*(s-a)*(s-b)*(s-c))
+ */
+var side1 = 5; 
+var side2 = 6; 
+var side3 = 7; 
+var perimeter = (side1 + side2 + side3)/2;
+var area =  Math.sqrt(perimeter*((perimeter-side1)*(perimeter-side2)*(perimeter-side3)));
+document.getElementById("triangle_area").innerHTML="The area of a triangle of 5,6,7 is "+ area;
+
+//display the date in the format of mm-dd-yy
+
+var today = new Date();
+var dd = today.getDate();
+
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+today = mm+'-'+dd+'-'+yyyy;
+console.log(today);
+today = mm+'/'+dd+'/'+yyyy;
+console.log(today);
+today = dd+'-'+mm+'-'+yyyy;
+console.log(today);
+today = dd+'/'+mm+'/'+yyyy;
+document.getElementById("time").innerHTML = "Today's date is "+today;
+
+//click the button to print current page
+function print_current_page()
+{
+window.print();
+}
+
+//console the date and time when opening the page
+var today = new Date();
+var day = today.getDay();
+var daylist = ["Sunday","Monday","Tuesday","Wednesday ","Thursday","Friday","Saturday"];
+console.log("Today is : " + daylist[day] + ".");
+var hour = today.getHours();
+var minute = today.getMinutes();
+var second = today.getSeconds();
+var prepand = (hour >= 12)? " PM ":" AM ";
+hour = (hour >= 12)? hour - 12: hour;
+if (hour===0 && prepand===' PM ') 
+{ 
+if (minute===0 && second===0)
+{ 
+hour=12;
+prepand=' Noon';
+} 
+else
+{ 
+hour=12;
+prepand=' PM';
+} 
+} 
+if (hour===0 && prepand===' AM ') 
+{ 
+if (minute===0 && second===0)
+{ 
+hour=12;
+prepand=' Midnight';
+} 
+
+else
+{ 
+hour=12;
+prepand=' AM';
+} 
+} 
+console.log("Current Time : "+hour + prepand + " : " + minute + " : " + second);
+</script>
+
+
+</html>
